@@ -35,6 +35,8 @@ def view(username = "", password = ""):
     if os.path.exists(username + ".txt") == True:
         if open(username + ".txt", "r").read() == password:
             return open(username + ".messages", "r").read()
+        if open(username + ".txt", "r").read() != password:
+            return "ERROR: 2 -- ACCOUNT DOES NOT EXIST"
     if os.path.exists(username + ".txt") == False:
         return "ERROR: 2 -- ACCOUNT DOES NOT EXIST"
 
@@ -95,7 +97,7 @@ def adminview(username = "", password = "", targetuser = ""):
 def adminmessages(username = "", password = "", targetuser = ""):
     if os.path.exists(username + ".admin") == True:
         if open(username + ".admin", "r").read() == password:
-            return open(targetuser + ".messages", "r")
+            return open(targetuser + ".messages", "r").read
         
 @app.get("/admin-delete-messages")
 def adminmessages(username = "", password = "", targetuser = ""):
