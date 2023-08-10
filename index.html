@@ -9,8 +9,11 @@
 
 <script type="text/javascript">
 
-    var request = new XMLHttpRequest();
-    request.open('GET', "http://172.105.28.74:8000/status", false);
-    alert(request.responseText);
+    async function api() {
+        const response = await fetch("http://172.105.28.74:8000/status");
+        const output = await response.json();
+        console.log(output);
+    }
+    api();
 
 </script>

@@ -1,7 +1,24 @@
 from fastapi import FastAPI
 import  os
 import glob
+import openai
 app = FastAPI()
+
+# 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
+openai.api_key = "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"
+model_engine = "text-davinci-003"
+def chatgpt(prompt):
+    completion = openai.Completion.create(
+        engine=model_engine,
+        prompt=prompt,
+        max_tokens=1000,
+        n=1,
+        stop=None,
+        temperature=0.5,
+    )
+
+    response = completion.choices[0].text
+    return response
 
 @app.get("/status")
 def status():
@@ -107,3 +124,13 @@ def adminmessages(username = "", password = "", targetuser = ""):
             with open(targetuser + ".messages", "w") as f:
                 f.write("")
             return "SUCCESS"
+
+@app.get("/chatgpt")
+def chatgptanswer(username = "", password = "", message = ""):
+    if os.path.exists(username + ".txt") == True:
+        if open(username + ".txt", "r").read() == password:
+            return chatgpt(message)
+        if open(username + ".txt", "r").read() != password:
+            return "ERROR: 2 -- ACCOUNT DOES NOT EXIST"
+    if os.path.exists(username + ".txt") == False:
+        return "ERROR: 2 -- ACCOUNT DOES NOT EXIST"
