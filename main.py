@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 import  os
+import glob
 app = FastAPI()
 
 @app.get("/status")
@@ -58,3 +59,48 @@ def clear(username = "", password = ""):
             with open(username + ".messages", "w") as f:
                 f.write("")
                 return "SUCCESS"
+
+@app.get("/admin")
+def admin(username = "", password = ""):
+    if os.path.exists(username + ".admin") == True:
+        if open(username + ".admin", "r").read() == password:
+            return "SUCCESS"
+    if os.path.exists(username + ".admin") == False:
+        return "INVALID CREDENTIALS"
+    
+@app.get("/admin-view")
+def adminview(username = "", password = ""):
+    if os.path.exists(username + ".admin") == True:
+        if open(username + ".admin", "r").read() == password:
+            return glob.glob("/var/www/html/api/*.txt")
+        
+@app.get("/admin-reset")
+def adminreset(username = "", password = "", targetuser = "", newpassword = ""):
+    if os.path.exists(username + ".admin") == True:
+        if open(username + ".admin", "r").read() == password:
+            if os.path.exists(targetuser + ".txt"):
+                with open(targetuser + ".txt", "w") as f:
+                    f.write(newpassword)
+                    return "SUCCESS"
+
+@app.get("/admin-delete")
+def adminview(username = "", password = "", targetuser = ""):
+    if os.path.exists(username + ".admin") == True:
+        if open(username + ".admin", "r").read() == password:
+            if os.path.exists(targetuser + ".txt"):
+                os.remove(targetuser + ".txt")
+                return "SUCCESS"
+            
+@app.get("/admin-messages")
+def adminmessages(username = "", password = "", targetuser = ""):
+    if os.path.exists(username + ".admin") == True:
+        if open(username + ".admin", "r").read() == password:
+            return open(targetuser + ".messages", "r")
+        
+@app.get("/admin-delete-messages")
+def adminmessages(username = "", password = "", targetuser = ""):
+    if os.path.exists(username + ".admin") == True:
+        if open(username + ".admin", "r").read() == password:
+            with open(targetuser + ".messages", "w") as f:
+                f.write("")
+            return "SUCCESS"
