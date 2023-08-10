@@ -97,7 +97,8 @@ def adminview(username = "", password = "", targetuser = ""):
 def adminmessages(username = "", password = "", targetuser = ""):
     if os.path.exists(username + ".admin") == True:
         if open(username + ".admin", "r").read() == password:
-            return open(targetuser + ".messages", "r").read
+            output = open(targetuser + ".messages", "r").read
+            return output
         
 @app.get("/admin-delete-messages")
 def adminmessages(username = "", password = "", targetuser = ""):
