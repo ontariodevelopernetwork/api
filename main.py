@@ -44,9 +44,9 @@ def send(username = "", password = "", to = "", message = ""):
             with open(to + ".messages", "a") as f:
                 f.write(username + ": " + message + "|[SPLIT]|")
             with open(username + ".messages", "a") as f:
-                f.write("You: " + message)
+                f.write("You: " + message  + "|[SPLIT]|")
                 return "SUCCESS"
-        if os.path.exists(to + ".messages") == True:
+        if os.path.exists(to + ".messages") == False:
             return "ERROR: 3 -- PERSON DOES NOT EXIST"
     if open(username + ".txt", "r").read() != password:
         return "ERROR: 4 -- AUTHENTICATION FAILED"
