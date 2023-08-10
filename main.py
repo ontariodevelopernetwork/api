@@ -5,7 +5,7 @@ import openai
 app = FastAPI()
 
 # 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
-openai.api_key = "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"
+openai.api_key = "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"
 model_engine = "text-davinci-003"
 def chatgpt(prompt):
     completion = openai.Completion.create(
