@@ -43,6 +43,8 @@ def send(username = "", password = "", to = "", message = ""):
         if os.path.exists(to + ".messages") == True:
             with open(to + ".messages", "a") as f:
                 f.write(username + ": " + message + "|[SPLIT]|")
+            with open(username + ".messages", "a") as f:
+                f.write("You: " & message)
                 return "SUCCESS"
         if os.path.exists(to + ".messages") == True:
             return "ERROR: 3 -- PERSON DOES NOT EXIST"
