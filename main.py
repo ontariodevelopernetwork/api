@@ -2,10 +2,11 @@ from fastapi import FastAPI
 import  os
 import glob
 import openai
+import requests
 app = FastAPI()
 
 # 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
-openai.api_key = "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"
+openai.api_key = ""
 model_engine = "text-davinci-003"
 def chatgpt(prompt):
     completion = openai.Completion.create(
@@ -25,7 +26,7 @@ def status():
     return "ACTIVE"
 
 @app.get("/create")
-def create(username = "", password = ""):
+def create(username = "", password = "", phone = ""):
     if os.path.exists(username + ".txt") == True:
         return "ERROR: 1 -- ACCOUNT ALREADY EXISTS"
     
@@ -33,6 +34,8 @@ def create(username = "", password = ""):
         
         with open(username + ".txt", "w") as f:
             f.write(password)
+        with open(username + ".phone", "w") as f:
+            f.write(phone)
         with open(username + ".messages", "w") as f:
             f.write("")
         return "SUCCESS"
@@ -43,6 +46,7 @@ def delete(username = "", password = ""):
         if open(username + ".txt", "r").read() == password:
             os.remove(username + ".txt")
             os.remove(username + ".messages")
+            os.remove(username + ".phone")
         return "SUCCESS"
     if os.path.exists(username + ".txt") == False:
         return "ERROR: 2 -- ACCOUNT DOES NOT EXIST"
@@ -65,7 +69,9 @@ def send(username = "", password = "", to = "", message = ""):
                 f.write(username + ": " + message + "|[SPLIT]|")
             with open(username + ".messages", "a") as f:
                 f.write("You: " + message  + "|[SPLIT]|")
+                requests.get("https://voip.ms/api/v1/rest.php^api_username=nevtech@nevtech.ca&api_password=30212178Skyler&method=SendSMS&did=2894820253&dst=" + to + ".phone" + "&message=" + "You have a message from: " + username + ".  open on your computer to view it.")
                 return "SUCCESS"
+                
         if os.path.exists(to + ".messages") == False:
             return "ERROR: 3 -- PERSON DOES NOT EXIST"
     if open(username + ".txt", "r").read() != password:
