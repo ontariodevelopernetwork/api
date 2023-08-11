@@ -115,12 +115,12 @@
     var password = "[PASSWORD]"
     function send() {
 
-        window.location.replace ("http://localhost:8000/html-send?username=" + username + "&password=" + password + "&to=" + document.getElementById("to").value +"&message=" + document.getElementById("message").value);
+        window.location.replace ("http://172.105.28.74:8000/html-send?username=" + username + "&password=" + password + "&to=" + document.getElementById("to").value +"&message=" + document.getElementById("message").value);
 
     }
     function clearmessages() {
 
-        window.location.replace ("http://localhost:8000/html-clear?username=" + username + "&password=" + password);
+        window.location.replace ("http://172.105.28.74:8000/html-clear?username=" + username + "&password=" + password);
 
     }
 
