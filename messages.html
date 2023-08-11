@@ -83,16 +83,27 @@
         <li class="taskbar"><a href="/login">Log In</a></li>
     </ul>
     <div style="background-color: blue; border-radius: 15px;">
-        <h1 style="padding-left: 1000px; font-family: 'Courier'; color: white;">Chat Page</h1>
+        <h1 style="padding-left: 1000px; font-family: 'Courier'; color: white;">Messages</h1>
     </div>
     <div class="pagecontent">
         <div class="page">
             <hr />
-            <h1>Home</h1>
+            <h1>View Messages</h1>
             <hr />
-            <h3>
-                Here you can chat with your friends and even ChatGPT for completely free. To chat with ChatGPT, make the recipient gpt.
-            </h3>
+            
+            <div style="background-color: azure;"><p>
+                [MESSAGE-LIST]
+            </p></div>
+            <div>
+                <a>Recipient:</a>
+                <input type="text" id="to" />
+            </div>
+            <div>
+                <a>Message:</a>
+                <input type="text" id="message" />
+            </div>
+            <button onclick="send()">Send Message</button>
+            <button onclick="clearmessages()">Clear All Messages</button>
         </div>
     </div>
 </body>
@@ -100,6 +111,17 @@
 
 <script>
 
-    
+    var username = "[USERNAME]"
+    var password = "[PASSWORD]"
+    function send() {
+
+        window.location.replace ("http://localhost:8000/html-send?username=" + username + "&password=" + password + "&to=" + document.getElementById("to").value +"&message=" + document.getElementById("message").value);
+
+    }
+    function clearmessages() {
+
+        window.location.replace ("http://localhost:8000/html-clear?username=" + username + "&password=" + password);
+
+    }
 
 </script>

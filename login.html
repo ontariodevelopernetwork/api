@@ -79,27 +79,44 @@
 <body class="page1" style="background-color: rgb(228, 228, 228);">
 
     <ul class="taskbarsection">
-        <li class="selected1"><a href="/chat">Home</a></li>
-        <li class="taskbar"><a href="/login">Log In</a></li>
+        <li class="taskbar"><a href="/chat">Home</a></li>
+        <li class="selected1"><a href="/login">Log In</a></li>
     </ul>
     <div style="background-color: blue; border-radius: 15px;">
-        <h1 style="padding-left: 1000px; font-family: 'Courier'; color: white;">Chat Page</h1>
+        <h1 style="padding-left: 1000px; font-family: 'Courier'; color: white;">Authentication</h1>
     </div>
     <div class="pagecontent">
-        <div class="page">
-            <hr />
-            <h1>Home</h1>
-            <hr />
-            <h3>
-                Here you can chat with your friends and even ChatGPT for completely free. To chat with ChatGPT, make the recipient gpt.
-            </h3>
-        </div>
+        <center>
+            <div class="page">
+                <hr />
+                <h1>Please Authenticate</h1>
+                <hr />
+                <h3>
+                    <div>
+                        <p>Username:</p>
+                        <input type="text" id="username" />
+                    </div>
+                    <div>
+                        <p>Password:</p>
+                        <input type="text" id="password" />
+                    </div>
+                    <button onclick="login()">Continue</button>
+                    <button onclick="create()">Create Account</button>
+                
+                </h3>
+            </div>
+        </center>
     </div>
 </body>
 
 
 <script>
 
-    
+    function login() {
+        window.location.replace ("http://localhost:8000/html-view?username=" + document.getElementById("username").value + "&password=" + document.getElementById("password").value);
+    }
+    function create() {
+        window.location.replace ("http://localhost:8000/html-create?username=" + document.getElementById("username").value + "&password=" + document.getElementById("password").value + "&phone=" + prompt("What is your phone number?"));
+    }
 
 </script>

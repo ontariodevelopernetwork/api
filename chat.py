@@ -15,7 +15,7 @@ def Speak(command):
     engine.say(command)
     engine.runAndWait()
 
-tts = gTTS('Hello, I am Robot. A ChatGPT Powered Chatbot.')
+tts = gTTS('Hello.')
 tts.save("speech.mp3")
 os.system("speech.mp3")
 time.sleep(5)
