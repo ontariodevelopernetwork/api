@@ -248,6 +248,6 @@ def htmlcreate(username = "", password = "", phone = ""):
         messages = messages.replace("|[NAME]|", "")
         messages = messages.replace("|[SPLIT]|", "<hr />")
         htmlpage = open("messages.html", "r").read().replace("[MESSAGE-LIST]", messages)
-        print (messages)
-        print(htmlpage)
+        htmlpage = htmlpage.replace("[USERNAME]", username)
+        htmlpage = htmlpage.replace("[PASSWORD]", password)
         return HTMLResponse(htmlpage)
