@@ -60,29 +60,28 @@
 
     .pagecontent {
 
-        padding-left: 500px;
-        padding-right: 500px;
         font-family: 'Courier';
 
     }
     .page {
 
-        background-color: rgb(191, 191, 191);
+        background-color:lightsteelblue;
         border-radius: 15px;
         padding: 10px;
+        border-style: dashed;
 
     }
 
 </style>
 
 
-<body class="page1" style="background-color: rgb(228, 228, 228);">
+<body class="page1" style="background-color: gray;">
 
     <ul class="taskbarsection">
         <li class="taskbar"><a href="/chat">Home</a></li>
         <li class="selected1"><a href="/login">Log In</a></li>
     </ul>
-    <div style="background-color: blue; border-radius: 15px;">
+    <div style="background-color: black; color: white; border-radius: 15px;">
         <h1 style="padding-left: 1000px; font-family: 'Courier'; color: white;">Authentication</h1>
     </div>
     <div class="pagecontent">
@@ -93,14 +92,15 @@
                 <hr />
                 <h3>
                     <div>
-                        <p>Username:</p>
-                        <input type="text" id="username" />
+                        <p>Username: <input type="text" id="username" /></p>
+                        
                     </div>
                     <div>
-                        <p>Password:</p>
-                        <input type="text" id="password" />
+                        <p>Password: <input type="password" id="password" /></p>
+                        
                     </div>
                     <button onclick="login()">Continue</button>
+                    <h3>-- Or --</h3>
                     <button onclick="create()">Create Account</button>
                 
                 </h3>
