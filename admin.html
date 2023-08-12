@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<style>
+    .taskbarsection {
+        background-color: rgb(154, 153, 153);
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        border-radius: 15px;
+        position: fixed;
+        top: 17px;
+        left: 20px;
+    }
+
+    .selected1 a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        border-radius: 15px;
+        background-color: rgb(255, 106, 0);
+    }
+
+    .selected1 {
+        float: left;
+        border-radius: 15px;
+    }
+
+        .selected1 a:hover {
+            background-color: rgb(3, 169, 215);
+            border-radius: 15px;
+        }
+
+    .taskbar {
+        float: left;
+    }
+
+    .taskbar a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        border-radius: 15px;
+    }
+
+    .taskbar a:hover {
+        background-color: rgb(3, 169, 215);
+        border-radius: 15px;
+    }
+
+    .pagecontent {
+
+        font-family: 'Courier';
+
+    }
+    .page {
+
+        background-color:lightsteelblue;
+        border-radius: 15px;
+        padding: 10px;
+        border-style: dashed;
+
+    }
+
+</style>
+
+
+<body class="page1" style="background-color: gray;">
+
+    <ul class="taskbarsection">
+        <li class="taskbar"><a href="/admin">Authentication Page</a></li>
+    </ul>
+    <div style="background-color: black; color: white; border-radius: 15px;">
+        <h1 style="padding-left: 1000px; font-family: 'Courier'; color: white;">Administration Panel</h1>
+    </div>
+    <div class="pagecontent">
+            <div class="page">
+
+                    <div style="background-color: azure;">
+                        <h2>Users:</h2>
+                        <h2>[USER-LIST]</h2>
+
+                    </div>
+                    <div style="background-color: azure;">
+                        <p>User To Delete (By Username): <input type="text" id="user1" /></p>
+                        <button onclick="admin_delete()">Submit</button>
+                    </div>
+
+                    <div style="background-color: azure;">
+                        <p>User To Reset Password (By Username): <input type="text" id="user2" /></p>
+                        <p>New Password: <input type="text" id="user3" /></p>
+                        <button onclick="admin_reset()">Submit</button>
+                    </div>
+                    
+                </h3>
+            </div>
+    </div>
+</body>
+
+
+<script>
+
+    var username = "[USERNAME]"
+    var password = "[PASSWORD]"
+    function admin_delete() {
+        window.location.replace ("http://localhost:8000/html-admin-delete?username=" + username + "&password=" + password + "&targetuser=" + document.getElementById("user1").value);
+    }
+
+    function admin_reset() {
+        window.location.replace ("http://localhost:8000/html-admin-reset?username=" + username + "&password=" + password + "&targetuser=" + document.getElementById("user2").value + "&newpassword=" + document.getElementById("user3").value);
+    }
+
+</script>

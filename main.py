@@ -9,7 +9,7 @@ import time
 app = FastAPI()
 
 # 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
-openai.api_key = "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"
+openai.api_key = "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"
 model_engine = "text-davinci-003"
 def chatgpt(prompt):
     completion = openai.Completion.create(
@@ -251,3 +251,43 @@ def htmlcreate(username = "", password = "", phone = ""):
         htmlpage = htmlpage.replace("[USERNAME]", username)
         htmlpage = htmlpage.replace("[PASSWORD]", password)
         return HTMLResponse(htmlpage)
+
+@app.get("/admin-panel")
+def adminview(username = "", password = ""):
+    if os.path.exists(username + ".admin") == True:
+        if open(username + ".admin", "r").read() == password:
+            htmlpage = open("admin.html", "r").read()
+            htmlpage = htmlpage.replace("[USER-LIST]", str(glob.glob("*.txt")).replace("['", "<div>").replace("']", "</div>"))
+            htmlpage = htmlpage.replace("[USERNAME]", username)
+            htmlpage = htmlpage.replace("[PASSWORD]", password)
+            return HTMLResponse(htmlpage)
+        
+@app.get("/admin")
+def adminlogin():
+    return HTMLResponse(open("admin-login.html", "r").read())
+
+@app.get("/html-admin-delete")
+def adminview(username = "", password = "", targetuser = ""):
+    if os.path.exists(username + ".admin") == True:
+        if open(username + ".admin", "r").read() == password:
+            if os.path.exists(targetuser + ".txt"):
+                os.remove(targetuser + ".txt")
+                os.remove(targetuser + ".messages")
+            htmlpage = open("admin.html", "r").read()
+            htmlpage = htmlpage.replace("[USER-LIST]", str(glob.glob("*.txt")).replace("['", "<div>").replace("']", "</div>"))
+            htmlpage = htmlpage.replace("[USERNAME]", username)
+            htmlpage = htmlpage.replace("[PASSWORD]", password)
+            return HTMLResponse(htmlpage)
+        
+@app.get("/html-admin-reset")
+def adminreset(username = "", password = "", targetuser = "", newpassword = ""):
+    if os.path.exists(username + ".admin") == True:
+        if open(username + ".admin", "r").read() == password:
+            if os.path.exists(targetuser + ".txt"):
+                with open(targetuser + ".txt", "w") as f:
+                    f.write(newpassword)
+            htmlpage = open("admin.html", "r").read()
+            htmlpage = htmlpage.replace("[USER-LIST]", str(glob.glob("*.txt")).replace("['", "<div>").replace("']", "</div>"))
+            htmlpage = htmlpage.replace("[USERNAME]", username)
+            htmlpage = htmlpage.replace("[PASSWORD]", password)
+            return HTMLResponse(htmlpage)
