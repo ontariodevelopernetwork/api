@@ -262,7 +262,7 @@ def adminview(username = "", password = ""):
             htmlpage = htmlpage.replace("[PASSWORD]", password)
             return HTMLResponse(htmlpage)
         
-@app.get("/admin")
+@app.get("/html-admin")
 def adminlogin():
     return HTMLResponse(open("admin-login.html", "r").read())
 
