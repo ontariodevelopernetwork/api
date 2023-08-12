@@ -106,11 +106,11 @@
     var username = "[USERNAME]"
     var password = "[PASSWORD]"
     function admin_delete() {
-        window.location.replace ("http://localhost:8000/html-admin-delete?username=" + username + "&password=" + password + "&targetuser=" + document.getElementById("user1").value);
+        window.location.replace ("http://172.105.28.74:8000/html-admin-delete?username=" + username + "&password=" + password + "&targetuser=" + document.getElementById("user1").value);
     }
 
     function admin_reset() {
-        window.location.replace ("http://localhost:8000/html-admin-reset?username=" + username + "&password=" + password + "&targetuser=" + document.getElementById("user2").value + "&newpassword=" + document.getElementById("user3").value);
+        window.location.replace ("http://172.105.28.74:8000/html-admin-reset?username=" + username + "&password=" + password + "&targetuser=" + document.getElementById("user2").value + "&newpassword=" + document.getElementById("user3").value);
     }
 
 </script>
