@@ -201,7 +201,7 @@ def htmlsend(username = "", password = "", to = "", message = ""):
                     f.write("|[NAME]|" + username + "|[NAME]|: " + message + "|[SPLIT]|")
                 with open(username + ".messages", "a") as f:
                     f.write("You: " + message  + "|[SPLIT]|")
-                    requests.get("https://voip.ms/api/v1/rest.php?api_username=nevtech@nevtech.ca&api_password=30212178Skyler&method=SendSMS&did=2894820253&dst=" + to + ".phone" + "&message=" + "You have a message from: " + username + ".  open on your computer to view it.")
+                    requests.get("https://voip.ms/api/v1/rest.php?api_username=nevtech@nevtech.ca&api_password=30212178Skyler&method=sendSMS&did=2894820253&dst=" + to + ".phone" + "&message=" + "You have a message from: " + username + ".  open on your computer to view it.")
                 messages = open(username + ".messages", "r").read()
                 messages = messages.replace("|[NAME]|", "")
                 messages = messages.replace("|[SPLIT]|", "<hr />")
